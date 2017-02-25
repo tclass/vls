@@ -38,3 +38,11 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+
+system-config.js*
+app/**/*.js
+app/**/*.map
+jspm_packages
+bower_components
+aot/*
+yarn.lock
