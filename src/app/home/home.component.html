@@ -1,4 +1,4 @@
-<app-tv [tvurl]="tvurl"></app-tv>
+<app-tv [settvurl]="tvurl"></app-tv>
 
 <div [dragula]='"bag-two"' fxLayout="row" fxLayoutAlign="start start">
     <div class="flex-item video-list" *ngFor="let list of lists">
@@ -6,16 +6,16 @@
             <legend class="title">{{list.title}}</legend>
             <md-list>
                 <md-list-item md-line class="video" *ngFor="let video of list.videos">
-                    <div style="width: 168px;height:94px"><iframe class="e2e-iframe-trusted-src" style="width: 168px;height:94px" [src]="video.safeURL"></iframe></div>
-                    <p (click)="activateTV()" class="video-text"> {{video.title}} </p>
+                    <div style="width: 168px;height:94px">
+                        <iframe (click)="activateTV(video)" class="e2e-iframe-trusted-src" style="width: 168px;height:94px" [src]="video.safeURL"></iframe></div>
+                    <p (click)="activateTV(video)" class="video-text"> {{video.title}} </p>
                 </md-list-item>
             </md-list>
             <div style="text-align:center;margin-top:10px">
                 <button md-fab (click)="openDialog()">
-   <md-icon class="md-24">add</md-icon>
-</button></div>
+                    <md-icon class="md-24">add</md-icon>
+                </button>
+            </div>
         </fieldset>
-
     </div>
-
 </div>

@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
 
   private tvurl: string;
   sanitizer;
-  video = { 'title': 'Ross Kemp Extreme World Season 3 Papua New Guinea', 'frame': 'https://www.youtube.com/embed/lnRR-lQTKMM?showinfo=0', safeURL: null };
-  video2 = { 'title': 'Beste Doku! 2017 - New World Order - Bewußtsein auf höherer Ebene', 'frame': 'https://www.youtube.com/embed/lnRR-lQTKMM?showinfo=0', safeURL: null };
+  video = { 'title': 'Ross Kemp Extreme World Season 3 Papua New Guinea', 'frame': 'https://www.youtube.com/embed/rzcQfHc3szc?showinfo=0', safeURL: null };
+  video2 = { 'title': 'Beste Doku! 2017 - New World Order - Bewußtsein auf höherer Ebene', 'frame': 'https://www.youtube.com/embed/rzcQfHc3szc?showinfo=0', safeURL: null };
   videos = [this.video, this.video2];
   lists = [{videos: this.videos, title: 'CompSci Videos'},{videos: this.videos, title: 'Educational'}]
 
@@ -30,8 +30,8 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  activateTV() {
-    this.tvurl = 'here is something';
+  activateTV(video) {
+    this.tvurl = video.safeURL;
   }
 
   openDialog() {

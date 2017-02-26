@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="center start">
-    <iframe class="tv flex-item e2e-iframe-trusted-src" [src]=""></iframe>
-    <h1>{{tvurl}}</h1>
+<div fxLayout="row" fxLayoutAlign="center start" [@slideInOut]="menu">
+    <iframe class="tv flex-item e2e-iframe-trusted-src" [src]="tvurl"></iframe>
+    <i style="cursor: pointer" (click)="collapseTV()" class="fa fa-times" aria-hidden="true"></i>
 </div>
