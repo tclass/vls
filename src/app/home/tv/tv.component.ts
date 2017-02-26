@@ -21,13 +21,13 @@ import { HomeComponent } from '../home.component';
 })
 export class TVComponent {
 
-  // @Input() tvurl: string;
   tvurl;
   menu = 'collapsed';
 
   constructor() {
   }
 
+  // TODO: change naming
   @Input()
   set settvurl(tvurl: string) {
      this.tvurl = tvurl;
@@ -37,7 +37,6 @@ export class TVComponent {
   }
 
   collapseTV() {
-    console.log("yes")
     this.menu = 'collapsed';
   }
 }

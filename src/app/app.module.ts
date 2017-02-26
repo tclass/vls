@@ -14,6 +14,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { DragulaModule } from 'ng2-dragula/ng2-dragula';
 import 'hammerjs';
 
+import { ListService } from './home/list.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,7 @@ import 'hammerjs';
     FlexLayoutModule,
     DragulaModule
   ],
+  providers: [ListService],
   bootstrap: [AppComponent],
   entryComponents: [CreateDialogComponent]
 })

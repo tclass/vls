@@ -3,29 +3,33 @@ import { MdDialog } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { TVComponent } from './tv/tv.component';
+import { ListService } from './list.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [MdDialog, ListService],
+  entryComponents: [CreateDialogComponent]
 })
 export class HomeComponent implements OnInit {
 
   private tvurl: string;
-  sanitizer;
-  video = { 'title': 'Ross Kemp Extreme World Season 3 Papua New Guinea', 'frame': 'https://www.youtube.com/embed/rzcQfHc3szc?showinfo=0', safeURL: null };
-  video2 = { 'title': 'Beste Doku! 2017 - New World Order - Bewußtsein auf höherer Ebene', 'frame': 'https://www.youtube.com/embed/rzcQfHc3szc?showinfo=0', safeURL: null };
-  videos = [this.video, this.video2];
-  lists = [{videos: this.videos, title: 'CompSci Videos'},{videos: this.videos, title: 'Educational'}]
+  private sanitizer;
+  private lists;
 
-  constructor(private _sanitizer: DomSanitizer, public dialog: MdDialog) {
+  constructor(private _sanitizer: DomSanitizer, public dialog: MdDialog, private listService: ListService) {
     this.sanitizer = this._sanitizer;
+    this.lists = listService.getLists().then(this.lists, list => list);
+
   }
 
   ngOnInit() {
-    for (const video of this.videos) {
-      if (video != null) {
-        video.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(video.frame);
+    for (const list of this.lists) {
+      for (const video of list.videos) {
+        if (video != null) {
+          video.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(video.frame);
+        }
       }
     }
   }
