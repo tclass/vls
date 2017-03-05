@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MdDialogRef } from '@angular/material';
+import { ListService, Video } from '../list.service';
 
 
 @Component({
@@ -9,7 +10,13 @@ import { MdDialogRef } from '@angular/material';
 })
 export class CreateDialogComponent {
 
-constructor(public dialogRef: MdDialogRef<CreateDialogComponent>) {
+  title = '';
+  url = '';
 
-}
+  constructor(public dialogRef: MdDialogRef<CreateDialogComponent>, private listService: ListService) {}
+
+  addVideo() {
+    this.listService.addVideo(1, new Video(1, this.title, this.url));
+    this.dialogRef.close();
+  }
 }

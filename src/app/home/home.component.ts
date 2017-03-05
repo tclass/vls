@@ -19,23 +19,19 @@ export class HomeComponent implements OnInit {
   private lists = [];
 
   constructor(private _sanitizer: DomSanitizer, public dialog: MdDialog, private listService: ListService) {
-    this.sanitizer = this._sanitizer;
-
-    listService.getLists().then(l => {
-      this.lists = l;
-    });
   }
 
   ngOnInit() {
-    for (const list of this.lists) {
-      for (const video of list.videos) {
-          console.log(video.frame)
-        if (video != null) {
-          console.log(video.frame)
-          video.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(video.frame);
+    this.listService.getLists().then(l => {
+      this.lists = l;
+      for (const list of this.lists) {
+        for (const video of list.videos) {
+          if (video != null) {
+            video.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(video.frame);
+          }
         }
       }
-    }
+    });
   }
 
   activateTV(video) {
@@ -46,5 +42,3 @@ export class HomeComponent implements OnInit {
     this.dialog.open(CreateDialogComponent);
   }
 }
-
-

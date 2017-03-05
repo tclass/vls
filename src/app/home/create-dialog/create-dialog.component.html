@@ -1,3 +1,15 @@
 <div>
-    <h2>Hey what's up</h2>
+    <h2 md-dialog-title>Add Video</h2>
+    <md-dialog-content fxLayout="column">
+        <md-input-container>
+            <input mdInput placeholder="Title" [(ngModel)]="title">
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Youtube URL" [(ngModel)]="url">
+        </md-input-container>
+    </md-dialog-content>
+    <md-dialog-actions>
+        <button (click)="addVideo()" md-button>Add</button>
+        <button md-button md-dialog-close>Close</button>
+    </md-dialog-actions>
 </div>
