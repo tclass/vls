@@ -6,8 +6,10 @@
             <legend class="title">{{list.title}}</legend>
             <md-list>
                 <md-list-item md-line class="video" *ngFor="let video of list.videos">
-                    <div style="width: 168px;height:94px">
-                        <iframe (click)="activateTV(video)" class="e2e-iframe-trusted-src" style="width: 168px;height:94px" [src]="video.safeURL"></iframe></div>
+                    <div fxLayout="row" fxLayoutAlign="center center" style="width: 168px;height:94px">
+                        <i (click)="removeVideo(list, video)" style="margin-right:15px" class="fa fa-trash" aria-hidden="true"></i>
+                        <img [src]="video.thumbnail" style="width:150px;height:50px">
+                    </div>
                     <p (click)="activateTV(video)" class="video-text"> {{video.title}} </p>
                 </md-list-item>
             </md-list>

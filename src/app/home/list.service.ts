@@ -6,11 +6,13 @@ export class Video {
     id: number;
     title: string;
     frame: string;
+    thumbnail: string;
     safeURL: SafeUrl;
-    public constructor(id: number, title: string, frame: string) {
+    public constructor(id: number, title: string, thumbnail: string, frame: string) {
         this.id = id;
         this.title = title;
         this.frame = frame;
+        this.thumbnail = thumbnail;
     }
 }
 
@@ -37,13 +39,15 @@ export class ListService {
     this.videos.push(new Video(
         1,
         'Ross Kemp Extreme World Season 3',
-        'https://www.youtube.com/embed/rzcQfHc3szc?showinfo=0',
+        'http://cdn.embed.ly/providers/logos/imgur.png',
+        '',
     ));
 
     this.videos2.push(new Video(
         2,
         'Beste Doku! 2017 - New World Order',
-        'https://www.youtube.com/embed/rzcQfHc3szc?showinfo=0'
+        'http://cdn.embed.ly/providers/logos/imgur.png',
+        ''
     ));
 
     this.lists.push(new List(1, 'Educational', this.videos));
@@ -56,6 +60,12 @@ export class ListService {
 
     addVideo(listID: number, video: Video) {
         this.lists[listID].videos.push(video);
+    }
+
+    removeVideo(list: List, video: Video) {
+        const ls = this.lists.indexOf(list);
+        const v = this.lists[ls].videos.indexOf(video);
+        this.lists[ls].videos.splice(v, 1);
     }
 
     addList(list: List) {

@@ -16,7 +16,7 @@ export class CreateDialogComponent {
   constructor(public dialogRef: MdDialogRef<CreateDialogComponent>, private listService: ListService) {}
 
   addVideo() {
-    this.listService.addVideo(1, new Video(1, this.title, this.url));
+    this.listService.addVideo(1, new Video(1, this.title, '', this.url));
     this.dialogRef.close();
   }
 }

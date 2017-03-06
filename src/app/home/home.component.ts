@@ -3,7 +3,7 @@ import { MdDialog } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
 import { TVComponent } from './tv/tv.component';
-import { ListService, List } from './list.service';
+import { ListService, List, Video } from './list.service';
 
 @Component({
   selector: 'app-home',
@@ -24,13 +24,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.listService.getLists().then(l => {
       this.lists = l;
-      for (const list of this.lists) {
-        for (const video of list.videos) {
-          if (video != null) {
-            video.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(video.frame);
-          }
-        }
-      }
     });
   }
 
@@ -41,4 +34,8 @@ export class HomeComponent implements OnInit {
   openDialog() {
     this.dialog.open(CreateDialogComponent);
   }
-}
+
+  removeVideo(list: List, video: Video) {
+    this.listService.removeVideo(list, video);
+  }
+};
